@@ -17,7 +17,6 @@ movement_speed = 250.0
 
 [node name="BossHead" parent="." instance=ExtResource("3_1ojdl")]
 position = Vector2(568, 141)
-scale = Vector2(1.2, 1.2)
 
 [node name="Canvas" type="CanvasModulate" parent="."]
 color = Color(0.481789, 0.481789, 0.481789, 1)

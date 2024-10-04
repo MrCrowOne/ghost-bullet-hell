@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_ca5fl"]
 [ext_resource type="Texture2D" uid="uid://dr0y77bqcp2cw" path="res://sprites/player/Man_Lantern/player01.png" id="2_e2qxx"]
-[ext_resource type="Texture2D" uid="uid://b0oah2kanicj7" path="res://icon.svg" id="3_6odnp"]
 [ext_resource type="Script" path="res://scripts/player/hand.gd" id="3_kvuf2"]
 [ext_resource type="Texture2D" uid="uid://rrokxjdsrjey" path="res://sprites/player/Man_Lantern/player02.png" id="3_lhpy3"]
 [ext_resource type="Texture2D" uid="uid://bbtc2350bh15t" path="res://sprites/player/Man_Lantern/player03.png" id="4_ae0wf"]
@@ -16,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bifv41oy328mc" path="res://sprites/player/Man_Lantern/run/player_run09.png" id="11_e4rh2"]
 [ext_resource type="Texture2D" uid="uid://capsu0b01emm4" path="res://sprites/player/Man_Lantern/run/player_run10.png" id="12_iew27"]
 [ext_resource type="Texture2D" uid="uid://bdlhe6tmwlda5" path="res://sprites/player/Man_Lantern/run/player_run11.png" id="13_eshfa"]
+[ext_resource type="Texture2D" uid="uid://cvn5vemvcpsv7" path="res://sprites/player/Gun/Gun.png" id="15_0i36y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_geysy"]
 animations = [{
@@ -88,8 +88,9 @@ position = Vector2(-15, 0)
 script = ExtResource("3_kvuf2")
 
 [node name="Gun" type="Sprite2D" parent="Hand"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_6odnp")
+position = Vector2(-4, 0)
+texture = ExtResource("15_0i36y")
+flip_h = true
 
 [node name="TimerShoot" type="Timer" parent="Hand"]
 one_shot = true

@@ -1,19 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://wl63i88ftn5r"]
+[gd_scene load_steps=8 format=3 uid="uid://wl63i88ftn5r"]
 
-[ext_resource type="Texture2D" uid="uid://b0oah2kanicj7" path="res://icon.svg" id="1_18p2c"]
-[ext_resource type="Script" path="res://scenes/Boss/bullet_boss.gd" id="1_n3efa"]
+[ext_resource type="Script" path="res://scripts/bullet_boss.gd" id="1_n3efa"]
+[ext_resource type="Texture2D" uid="uid://dtr410bln3gh7" path="res://sprites/Boss/BulletBoss/BulletBoss01.png" id="2_8om6d"]
+[ext_resource type="Texture2D" uid="uid://bcwcwik5pdp8b" path="res://sprites/Boss/BulletBoss/BulletBoss02.png" id="3_q75oy"]
+[ext_resource type="Texture2D" uid="uid://bmt4eg4t33ind" path="res://sprites/Boss/BulletBoss/BulletBoss03.png" id="4_qh1j5"]
+[ext_resource type="Texture2D" uid="uid://hqve133yin1a" path="res://sprites/Boss/BulletBoss/BulletBoss04.png" id="5_8bvfa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bugjx"]
-size = Vector2(24, 24)
+[sub_resource type="SpriteFrames" id="SpriteFrames_xylfv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8om6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q75oy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qh1j5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8bvfa")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
-[node name="BulletBoss" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4uu20"]
+radius = 9.0
+
+[node name="BulletBoss" type="Area2D" groups=["bulletBoss"]]
+scale = Vector2(2, 2)
 script = ExtResource("1_n3efa")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_18p2c")
+[node name="AnimatedBullet" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xylfv")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_bugjx")
+position = Vector2(-5, 0)
+shape = SubResource("CircleShape2D_4uu20")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

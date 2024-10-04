@@ -41,7 +41,7 @@ func hand_follow_mouse() -> void:
 	var direction = global_position.direction_to(mouse_position)
 	
 	# Defina uma posição fixa da mão em relação ao jogador, ajustável
-	hand.position = direction.normalized() * 15
+	hand.position = direction.normalized() * 30
 	hand.look_at(mouse_position)  # Faz a mão/arma olhar para o mouse
 
 func get_mouse_position() -> Vector2:

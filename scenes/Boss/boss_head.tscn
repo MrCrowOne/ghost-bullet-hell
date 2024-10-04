@@ -1,16 +1,16 @@
 [gd_scene load_steps=14 format=3 uid="uid://cms74lui1xcw2"]
 
 [ext_resource type="Texture2D" uid="uid://cha8p6vlfriyd" path="res://sprites/Boss/Head/Sprite-0001.png" id="1_7kntr"]
-[ext_resource type="Script" path="res://scenes/Boss/boss_head.gd" id="1_rm8tn"]
+[ext_resource type="Script" path="res://scripts/boss_head.gd" id="1_rm8tn"]
 [ext_resource type="Texture2D" uid="uid://kbrobiqiac8m" path="res://sprites/Boss/Head/Sprite-0002.png" id="2_ejtws"]
 [ext_resource type="Texture2D" uid="uid://bha8ggbu620n1" path="res://sprites/Boss/Head/Sprite-0003.png" id="3_4otjn"]
 [ext_resource type="Texture2D" uid="uid://c2b707b50dw7v" path="res://sprites/Boss/Head/Sprite-0004.png" id="4_h753l"]
 [ext_resource type="Texture2D" uid="uid://dwdo4tc6aw362" path="res://sprites/Boss/Head/Sprite-0005.png" id="5_kebpd"]
 [ext_resource type="Texture2D" uid="uid://cvn6o4d0tblxf" path="res://sprites/Boss/Head/Sprite-0006.png" id="6_ldgm4"]
 [ext_resource type="Texture2D" uid="uid://131kh6wtbf5q" path="res://sprites/light.jpg" id="7_eljjg"]
-[ext_resource type="Script" path="res://scenes/Boss/left_hand.gd" id="9_ln87i"]
-[ext_resource type="Texture2D" uid="uid://c0f4vfjnmlhud" path="res://sprites/Boss/Hand/HandLeft.png" id="9_n1pwj"]
-[ext_resource type="Script" path="res://scenes/Boss/right_hand.gd" id="11_8xo3f"]
+[ext_resource type="Script" path="res://scripts/left_hand.gd" id="9_ln87i"]
+[ext_resource type="Script" path="res://scripts/right_hand.gd" id="11_8xo3f"]
+[ext_resource type="Texture2D" uid="uid://ca88od25uppii" path="res://sprites/Boss/Hand/Pixilart selection (19).png" id="12_gnvn6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5odqn"]
 
@@ -74,15 +74,16 @@ position = Vector2(-539, 312)
 scale = Vector2(0.8, 0.8)
 script = ExtResource("9_ln87i")
 
-[node name="ShootPoint" type="Node2D" parent="LeftHand"]
-position = Vector2(36, -308)
+[node name="FirePoint" type="Node2D" parent="LeftHand"]
+position = Vector2(76.8751, 16.25)
 
 [node name="Sprite2D" type="Sprite2D" parent="LeftHand"]
 position = Vector2(-2.00003, 3.05176e-05)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("9_n1pwj")
+texture = ExtResource("12_gnvn6")
+flip_h = true
 
 [node name="TimerLeft" type="Timer" parent="LeftHand"]
+wait_time = 2.6
 autostart = true
 
 [node name="RightHand" type="Node2D" parent="."]
@@ -91,14 +92,14 @@ scale = Vector2(0.8, 0.8)
 script = ExtResource("11_8xo3f")
 
 [node name="FirePoint" type="Node2D" parent="RightHand"]
+position = Vector2(-102.917, 9.58331)
 
 [node name="Sprite2D" type="Sprite2D" parent="RightHand"]
 position = Vector2(-25, 0)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("9_n1pwj")
-flip_h = true
+texture = ExtResource("12_gnvn6")
 
 [node name="TimerRight" type="Timer" parent="RightHand"]
+wait_time = 2.6
 autostart = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

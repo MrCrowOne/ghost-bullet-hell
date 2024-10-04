@@ -1,21 +1,66 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5nhasr2s847n"]
+[gd_scene load_steps=13 format=3 uid="uid://c5nhasr2s847n"]
 
 [ext_resource type="Script" path="res://scripts/player/bullet.gd" id="1_0sk2e"]
-[ext_resource type="Texture2D" uid="uid://dasqejbxl7r15" path="res://sprites/player/shoot.png" id="1_b2hgf"]
+[ext_resource type="Texture2D" uid="uid://barjnofbfeaey" path="res://sprites/player/bullet/Sprite-0001.png" id="2_10xcg"]
 [ext_resource type="Texture2D" uid="uid://131kh6wtbf5q" path="res://sprites/light.jpg" id="3_1rew1"]
+[ext_resource type="Texture2D" uid="uid://tuqukiyisiki" path="res://sprites/player/bullet/Sprite-0002.png" id="4_eh311"]
+[ext_resource type="Texture2D" uid="uid://by1lxhwrsdnvb" path="res://sprites/player/bullet/Sprite-0003.png" id="5_w2yre"]
+[ext_resource type="Texture2D" uid="uid://cfy53es10843n" path="res://sprites/player/bullet/Sprite-0004.png" id="6_ybur4"]
+[ext_resource type="Texture2D" uid="uid://ru678ul8end0" path="res://sprites/player/bullet/Sprite-0005.png" id="7_3j18n"]
+[ext_resource type="Texture2D" uid="uid://eabx3f4hktqa" path="res://sprites/player/bullet/Sprite-0007.png" id="9_olfsr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjpfm"]
-size = Vector2(17, 10)
+size = Vector2(25, 12)
 
-[node name="Bullet" type="Area2D"]
+[sub_resource type="Animation" id="Animation_kxlsc"]
+resource_name = "Effect"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_10xcg"), ExtResource("4_eh311"), ExtResource("5_w2yre"), ExtResource("6_ybur4"), ExtResource("7_3j18n"), ExtResource("9_olfsr")]
+}
+
+[sub_resource type="Animation" id="Animation_fgoji"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_10xcg")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p285n"]
+_data = {
+"Effect": SubResource("Animation_kxlsc"),
+"RESET": SubResource("Animation_fgoji")
+}
+
+[node name="Bullet" type="Area2D" groups=["bullet"]]
 script = ExtResource("1_0sk2e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 2)
-texture = ExtResource("1_b2hgf")
+scale = Vector2(2, 2)
+texture = ExtResource("2_10xcg")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 0)
+position = Vector2(6, 2)
 shape = SubResource("RectangleShape2D_hjpfm")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -23,5 +68,12 @@ position = Vector2(-1, 16)
 scale = Vector2(0.283333, 0.187778)
 color = Color(0.56, 0.56, 0.56, 1)
 texture = ExtResource("3_1rew1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_p285n")
+}
+autoplay = "Effect"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

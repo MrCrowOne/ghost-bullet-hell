@@ -4,15 +4,15 @@ extends Node2D
 var projectile_speed = 400
 var speed = 400 
 # Tempo entre ataques
-var attack_interval = 1.5
+var attack_interval = 5.5
 # Referência ao jogador
 var player
 var direction = Vector2()
 
 var projectile_positions = [
-	Vector2(-190, -190),  # Posição do primeiro projétil (à esquerda)
+	Vector2(-90, -90),  # Posição do primeiro projétil (à esquerda)
 	Vector2(0, 0),    # Posição do segundo projétil (no centro)
-	Vector2(190, 190)    # Posição do terceiro projétil (à direita)
+	Vector2(90, 90)    # Posição do terceiro projétil (à direita)
 ]
 # Quando a mão estiver pronta
 func _ready():
