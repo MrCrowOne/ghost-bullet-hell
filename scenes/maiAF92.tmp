@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://sw1yg2i8m5f6"]
+
+[ext_resource type="PackedScene" uid="uid://b77vvj4h25gor" path="res://scenes/Arena/arena.tscn" id="1_ju6a2"]
+[ext_resource type="PackedScene" uid="uid://dogyrlhx6smb5" path="res://scenes/player/Player.tscn" id="1_wvu41"]
+[ext_resource type="PackedScene" uid="uid://cms74lui1xcw2" path="res://scenes/Boss/boss_head.tscn" id="3_1ojdl"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Arena" parent="." instance=ExtResource("1_ju6a2")]
+position = Vector2(571, 531)
+scale = Vector2(1.2, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_wvu41")]
+position = Vector2(584, 522)
+scale = Vector2(2.2, 2.2)
+movement_speed = 250.0
+
+[node name="BossHead" parent="." instance=ExtResource("3_1ojdl")]
+position = Vector2(568, 141)
+scale = Vector2(1.2, 1.2)
+
+[node name="Canvas" type="CanvasModulate" parent="."]
+color = Color(0.481789, 0.481789, 0.481789, 1)

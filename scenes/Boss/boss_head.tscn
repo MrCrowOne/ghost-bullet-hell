@@ -1,0 +1,106 @@
+[gd_scene load_steps=14 format=3 uid="uid://cms74lui1xcw2"]
+
+[ext_resource type="Texture2D" uid="uid://cha8p6vlfriyd" path="res://sprites/Boss/Head/Sprite-0001.png" id="1_7kntr"]
+[ext_resource type="Script" path="res://scenes/Boss/boss_head.gd" id="1_rm8tn"]
+[ext_resource type="Texture2D" uid="uid://kbrobiqiac8m" path="res://sprites/Boss/Head/Sprite-0002.png" id="2_ejtws"]
+[ext_resource type="Texture2D" uid="uid://bha8ggbu620n1" path="res://sprites/Boss/Head/Sprite-0003.png" id="3_4otjn"]
+[ext_resource type="Texture2D" uid="uid://c2b707b50dw7v" path="res://sprites/Boss/Head/Sprite-0004.png" id="4_h753l"]
+[ext_resource type="Texture2D" uid="uid://dwdo4tc6aw362" path="res://sprites/Boss/Head/Sprite-0005.png" id="5_kebpd"]
+[ext_resource type="Texture2D" uid="uid://cvn6o4d0tblxf" path="res://sprites/Boss/Head/Sprite-0006.png" id="6_ldgm4"]
+[ext_resource type="Texture2D" uid="uid://131kh6wtbf5q" path="res://sprites/light.jpg" id="7_eljjg"]
+[ext_resource type="Script" path="res://scenes/Boss/left_hand.gd" id="9_ln87i"]
+[ext_resource type="Texture2D" uid="uid://c0f4vfjnmlhud" path="res://sprites/Boss/Hand/HandLeft.png" id="9_n1pwj"]
+[ext_resource type="Script" path="res://scenes/Boss/right_hand.gd" id="11_8xo3f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5odqn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xoem"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7kntr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ejtws")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4otjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h753l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kebpd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ldgm4")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[node name="BossHead" type="Area2D"]
+scale = Vector2(1.2, 1.2)
+script = ExtResource("1_rm8tn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5odqn")
+texture = ExtResource("1_7kntr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2xoem")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.633103
+
+[node name="EyeLeft" type="PointLight2D" parent="."]
+position = Vector2(-30, -10)
+scale = Vector2(0.417222, 0.356111)
+color = Color(1, 1, 0, 1)
+texture = ExtResource("7_eljjg")
+
+[node name="EyeRight" type="PointLight2D" parent="."]
+position = Vector2(30, -11)
+scale = Vector2(0.417222, 0.356111)
+color = Color(1, 1, 0, 1)
+texture = ExtResource("7_eljjg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-77, -69, -60, -86, -46, -100, 49, -99, 97, -45, 93, 28, 66, 46, -76, 47, -96, 25, -96, -48)
+
+[node name="LeftHand" type="Node2D" parent="."]
+position = Vector2(-539, 312)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("9_ln87i")
+
+[node name="ShootPoint" type="Node2D" parent="LeftHand"]
+position = Vector2(36, -308)
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftHand"]
+position = Vector2(-2.00003, 3.05176e-05)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_n1pwj")
+
+[node name="TimerLeft" type="Timer" parent="LeftHand"]
+autostart = true
+
+[node name="RightHand" type="Node2D" parent="."]
+position = Vector2(584, 334)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("11_8xo3f")
+
+[node name="FirePoint" type="Node2D" parent="RightHand"]
+
+[node name="Sprite2D" type="Sprite2D" parent="RightHand"]
+position = Vector2(-25, 0)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_n1pwj")
+flip_h = true
+
+[node name="TimerRight" type="Timer" parent="RightHand"]
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="LeftHand/TimerLeft" to="LeftHand" method="_on_attack_timeout"]
+[connection signal="timeout" from="RightHand/TimerRight" to="RightHand" method="_on_attack_timeout"]

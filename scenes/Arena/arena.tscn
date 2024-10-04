@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b77vvj4h25gor"]
+
+[ext_resource type="Texture2D" uid="uid://c8ijl1dd1fy62" path="res://sprites/floor.jpg" id="1_7l8lm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y18wi"]
+size = Vector2(27, 367.792)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb35x"]
+size = Vector2(548.333, 37)
+
+[node name="Arena" type="Node2D"]
+scale = Vector2(1.2, 1.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7l8lm")
+
+[node name="LeftRight" type="StaticBody2D" parent="."]
+
+[node name="Left" type="CollisionShape2D" parent="LeftRight"]
+position = Vector2(-285.833, 0)
+shape = SubResource("RectangleShape2D_y18wi")
+
+[node name="Right" type="CollisionShape2D" parent="LeftRight"]
+position = Vector2(290.833, 1.10417)
+shape = SubResource("RectangleShape2D_y18wi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2.49998, -200.5)
+shape = SubResource("RectangleShape2D_cb35x")
+
+[node name="Top2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 202)
+shape = SubResource("RectangleShape2D_cb35x")
