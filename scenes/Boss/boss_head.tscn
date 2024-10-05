@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cms74lui1xcw2"]
+[gd_scene load_steps=26 format=3 uid="uid://cms74lui1xcw2"]
 
 [ext_resource type="Texture2D" uid="uid://cha8p6vlfriyd" path="res://sprites/Boss/Head/Sprite-0001.png" id="1_7kntr"]
 [ext_resource type="Script" path="res://scripts/boss_head.gd" id="1_rm8tn"]
@@ -8,37 +8,98 @@
 [ext_resource type="Texture2D" uid="uid://dwdo4tc6aw362" path="res://sprites/Boss/Head/Sprite-0005.png" id="5_kebpd"]
 [ext_resource type="Texture2D" uid="uid://cvn6o4d0tblxf" path="res://sprites/Boss/Head/Sprite-0006.png" id="6_ldgm4"]
 [ext_resource type="Texture2D" uid="uid://131kh6wtbf5q" path="res://sprites/light.jpg" id="7_eljjg"]
+[ext_resource type="Texture2D" uid="uid://dopcrapyk01jh" path="res://sprites/Boss/Head/pixil-frame-0.png" id="8_hbhdg"]
+[ext_resource type="Texture2D" uid="uid://c0k7fl5lieo6h" path="res://sprites/Boss/Head/pixil-frame-1.png" id="9_bqsic"]
 [ext_resource type="Script" path="res://scripts/left_hand.gd" id="9_ln87i"]
+[ext_resource type="Texture2D" uid="uid://ebivngl7tuk8" path="res://sprites/Boss/Head/pixil-frame-2.png" id="10_ri1ac"]
 [ext_resource type="Script" path="res://scripts/right_hand.gd" id="11_8xo3f"]
+[ext_resource type="Texture2D" uid="uid://brvkhorak3apw" path="res://sprites/Boss/Head/pixil-frame-3.png" id="11_e7avv"]
+[ext_resource type="Texture2D" uid="uid://dsmclap6vdmlp" path="res://sprites/Boss/BarLife.png" id="12_3yeu2"]
 [ext_resource type="Texture2D" uid="uid://ca88od25uppii" path="res://sprites/Boss/Hand/Pixilart selection (19).png" id="12_gnvn6"]
+[ext_resource type="Texture2D" uid="uid://qv2jkimbblyi" path="res://sprites/Boss/Head/pixil-frame-4.png" id="12_praee"]
+[ext_resource type="Texture2D" uid="uid://2qr1ouq53k0c" path="res://sprites/Boss/Head/pixil-frame-8.png" id="13_cngh1"]
+[ext_resource type="Texture2D" uid="uid://clt5viiqd3b72" path="res://sprites/Boss/Head/pixil-frame-9.png" id="14_snuvx"]
+[ext_resource type="Texture2D" uid="uid://b1p7pcnkq7ef5" path="res://sprites/Boss/Head/pixil-frame-10.png" id="15_jykmo"]
+[ext_resource type="Texture2D" uid="uid://5aa3w7vl5yat" path="res://sprites/Boss/Head/pixil-frame-11.png" id="16_0s0qg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5odqn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2xoem"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("1_7kntr")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("2_ejtws")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("3_4otjn")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("4_h753l")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": ExtResource("5_kebpd")
 }, {
+"duration": 2.0,
+"texture": ExtResource("6_ldgm4")
+}, {
 "duration": 1.0,
+"texture": ExtResource("8_hbhdg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bqsic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ri1ac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_e7avv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_praee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_cngh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_snuvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_jykmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0s0qg")
+}, {
+"duration": 2.0,
+"texture": ExtResource("1_7kntr")
+}, {
+"duration": 2.0,
+"texture": ExtResource("2_ejtws")
+}, {
+"duration": 2.0,
+"texture": ExtResource("3_4otjn")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_h753l")
+}, {
+"duration": 2.0,
+"texture": ExtResource("5_kebpd")
+}, {
+"duration": 2.0,
 "texture": ExtResource("6_ldgm4")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"look",
 "speed": 10.0
 }]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvv3a"]
+bg_color = Color(0.193154, 0.193154, 0.193153, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nfkh"]
+bg_color = Color(0.651058, 0.107798, 0.0915864, 1)
 
 [node name="BossHead" type="Area2D"]
 scale = Vector2(1.2, 1.2)
@@ -46,13 +107,11 @@ script = ExtResource("1_rm8tn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_5odqn")
-texture = ExtResource("1_7kntr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2xoem")
-animation = &"Idle"
-autoplay = "Idle"
-frame_progress = 0.633103
+animation = &"look"
+autoplay = "look"
 
 [node name="EyeLeft" type="PointLight2D" parent="."]
 position = Vector2(-30, -10)
@@ -83,7 +142,7 @@ texture = ExtResource("12_gnvn6")
 flip_h = true
 
 [node name="TimerLeft" type="Timer" parent="LeftHand"]
-wait_time = 2.6
+wait_time = 1.7
 autostart = true
 
 [node name="RightHand" type="Node2D" parent="."]
@@ -99,8 +158,29 @@ position = Vector2(-25, 0)
 texture = ExtResource("12_gnvn6")
 
 [node name="TimerRight" type="Timer" parent="RightHand"]
-wait_time = 2.6
+wait_time = 1.7
 autostart = true
+
+[node name="Health" type="ProgressBar" parent="."]
+offset_left = -225.833
+offset_top = -121.667
+offset_right = 230.167
+offset_bottom = -96.6667
+theme_override_styles/background = SubResource("StyleBoxFlat_hvv3a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5nfkh")
+max_value = 12000.0
+show_percentage = false
+
+[node name="LifeBoss" type="Sprite2D" parent="."]
+position = Vector2(2.5, -126.667)
+texture = ExtResource("12_3yeu2")
+
+[node name="EyeRight2" type="PointLight2D" parent="LifeBoss"]
+position = Vector2(-0.83333, 7.5)
+scale = Vector2(4, 0.2)
+color = Color(0.996703, 0.994104, 0.987022, 1)
+energy = 1.41
+texture = ExtResource("7_eljjg")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="LeftHand/TimerLeft" to="LeftHand" method="_on_attack_timeout"]

@@ -10,9 +10,9 @@ var player
 var direction = Vector2()
 
 var projectile_positions = [
-	Vector2(-190, -190),  # Posição do primeiro projétil (à esquerda)
+	Vector2(-90, -90),  # Posição do primeiro projétil (à esquerda)
 	Vector2(0, 0),    # Posição do segundo projétil (no centro)
-	Vector2(190, 190)    # Posição do terceiro projétil (à direita)
+	Vector2(90, 90)    # Posição do terceiro projétil (à direita)
 ]
 # Quando a mão estiver pronta
 func _ready():
@@ -25,10 +25,11 @@ func _ready():
 		return
 	# Timer para controlar os ataques
 	var attack_timer = Timer.new()
-	add_child(attack_timer)
+	add_child(attack_timer)  # Adiciona o timer à cena
 	attack_timer.wait_time = attack_interval
 	attack_timer.autostart = true
-	attack_timer.connect("timeout", Callable(self, "_on_attack_timeout"))
+	attack_timer.connect("timeout", Callable(self, "_on_attack_timeout"))  # Conecta o timeout após adicionar o timer
+
 
 # Função para disparar o projétil
 func _on_attack_timeout():

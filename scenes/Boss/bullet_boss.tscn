@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://wl63i88ftn5r"]
+[gd_scene load_steps=9 format=3 uid="uid://wl63i88ftn5r"]
 
 [ext_resource type="Script" path="res://scripts/bullet_boss.gd" id="1_n3efa"]
 [ext_resource type="Texture2D" uid="uid://dtr410bln3gh7" path="res://sprites/Boss/BulletBoss/BulletBoss01.png" id="2_8om6d"]
 [ext_resource type="Texture2D" uid="uid://bcwcwik5pdp8b" path="res://sprites/Boss/BulletBoss/BulletBoss02.png" id="3_q75oy"]
 [ext_resource type="Texture2D" uid="uid://bmt4eg4t33ind" path="res://sprites/Boss/BulletBoss/BulletBoss03.png" id="4_qh1j5"]
 [ext_resource type="Texture2D" uid="uid://hqve133yin1a" path="res://sprites/Boss/BulletBoss/BulletBoss04.png" id="5_8bvfa"]
+[ext_resource type="Texture2D" uid="uid://131kh6wtbf5q" path="res://sprites/light.jpg" id="6_i66h5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xylfv"]
 animations = [{
@@ -30,6 +31,7 @@ animations = [{
 radius = 9.0
 
 [node name="BulletBoss" type="Area2D" groups=["bulletBoss"]]
+position = Vector2(11, -409)
 scale = Vector2(2, 2)
 script = ExtResource("1_n3efa")
 
@@ -41,5 +43,12 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 0)
 shape = SubResource("CircleShape2D_4uu20")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-5, -1)
+scale = Vector2(0.224253, 0.145144)
+color = Color(1, 0.988235, 0.0156863, 0.992157)
+energy = 0.38
+texture = ExtResource("6_i66h5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

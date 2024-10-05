@@ -6,7 +6,7 @@
 size = Vector2(27, 367.792)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cb35x"]
-size = Vector2(548.333, 37)
+size = Vector2(603.333, 37)
 
 [node name="Arena" type="Node2D"]
 scale = Vector2(1.2, 1.2)
@@ -31,5 +31,5 @@ position = Vector2(2.49998, -200.5)
 shape = SubResource("RectangleShape2D_cb35x")
 
 [node name="Top2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1, 202)
+position = Vector2(3.33334, 202)
 shape = SubResource("RectangleShape2D_cb35x")

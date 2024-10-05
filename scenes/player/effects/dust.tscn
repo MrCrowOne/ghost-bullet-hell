@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://suyljb6oyycn"]
+
+[ext_resource type="Texture2D" uid="uid://butkcknjj8r7v" path="res://fonts/dust.png" id="1_0xw15"]
+
+[sub_resource type="Gradient" id="Gradient_lx4ja"]
+offsets = PackedFloat32Array(0, 0.494505, 0.989011)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gjtph"]
+gradient = SubResource("Gradient_lx4ja")
+
+[sub_resource type="Curve" id="Curve_y0e61"]
+_data = [Vector2(0, 0), 0.0, 7.92453, 0, 0, Vector2(1, 0.00377357), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e00jw"]
+curve = SubResource("Curve_y0e61")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f1nhj"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 7.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_e00jw")
+color_ramp = SubResource("GradientTexture1D_gjtph")
+
+[node name="Dust" type="GPUParticles2D"]
+show_behind_parent = true
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_f1nhj")
+texture = ExtResource("1_0xw15")

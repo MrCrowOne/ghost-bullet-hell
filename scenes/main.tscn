@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://sw1yg2i8m5f6"]
+[gd_scene load_steps=10 format=3 uid="uid://sw1yg2i8m5f6"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_blf2h"]
 [ext_resource type="PackedScene" uid="uid://b77vvj4h25gor" path="res://scenes/Arena/arena.tscn" id="1_ju6a2"]
 [ext_resource type="PackedScene" uid="uid://dogyrlhx6smb5" path="res://scenes/player/Player.tscn" id="1_wvu41"]
 [ext_resource type="PackedScene" uid="uid://cms74lui1xcw2" path="res://scenes/Boss/boss_head.tscn" id="3_1ojdl"]
+[ext_resource type="Script" path="res://scripts/area_dead.gd" id="5_iy3nu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yccdd"]
+size = Vector2(2522.5, 21.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkdky"]
+size = Vector2(161, 1820)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w04t4"]
+size = Vector2(333.477, 252.738)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru384"]
+size = Vector2(373, 1015)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_blf2h")
 
 [node name="Arena" parent="." instance=ExtResource("1_ju6a2")]
 position = Vector2(571, 531)
@@ -12,11 +27,58 @@ scale = Vector2(1.2, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_wvu41")]
 position = Vector2(584, 522)
-scale = Vector2(2.2, 2.2)
+scale = Vector2(2.4, 2.4)
 movement_speed = 250.0
 
 [node name="BossHead" parent="." instance=ExtResource("3_1ojdl")]
 position = Vector2(568, 141)
 
-[node name="Canvas" type="CanvasModulate" parent="."]
-color = Color(0.481789, 0.481789, 0.481789, 1)
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.389287, 0.389287, 0.389287, 1)
+
+[node name="AreaClean" type="Area2D" parent="."]
+position = Vector2(-184, 0)
+
+[node name="Top" type="CollisionShape2D" parent="AreaClean"]
+position = Vector2(792, -597)
+scale = Vector2(1.23641, 0.58017)
+shape = SubResource("RectangleShape2D_yccdd")
+
+[node name="Bottom" type="CollisionShape2D" parent="AreaClean"]
+position = Vector2(761, 1179.25)
+scale = Vector2(1.22042, 1.22042)
+shape = SubResource("RectangleShape2D_yccdd")
+
+[node name="Left" type="CollisionShape2D" parent="AreaClean"]
+position = Vector2(-868.5, 298)
+shape = SubResource("RectangleShape2D_wkdky")
+
+[node name="Right" type="CollisionShape2D" parent="AreaClean"]
+position = Vector2(2404, 298)
+shape = SubResource("RectangleShape2D_wkdky")
+
+[node name="AreaDead" type="Area2D" parent="."]
+script = ExtResource("5_iy3nu")
+
+[node name="Top" type="CollisionShape2D" parent="AreaDead"]
+z_index = -1
+position = Vector2(582, 176)
+scale = Vector2(2.43795, 1.23844)
+shape = SubResource("RectangleShape2D_w04t4")
+
+[node name="Bottom" type="CollisionShape2D" parent="AreaDead"]
+z_index = -1
+position = Vector2(586.5, 880.5)
+scale = Vector2(2.43795, 1.23844)
+shape = SubResource("RectangleShape2D_w04t4")
+
+[node name="Left" type="CollisionShape2D" parent="AreaDead"]
+position = Vector2(22.5, 527.5)
+shape = SubResource("RectangleShape2D_ru384")
+
+[node name="Right" type="CollisionShape2D" parent="AreaDead"]
+position = Vector2(1125, 527.5)
+shape = SubResource("RectangleShape2D_ru384")
+
+[connection signal="area_entered" from="AreaClean" to="." method="_on_area_clean_area_entered"]
+[connection signal="body_entered" from="AreaDead" to="AreaDead" method="_on_body_entered"]
