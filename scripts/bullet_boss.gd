@@ -1,5 +1,8 @@
 extends Area2D
 
+const GAMEOVER: PackedScene = preload("res://scenes/game_over.tscn")
+@onready var game_over: TextureRect = $GameOver
+
 #@onready var animation_bullet_boss = $AnimatedSprite2D
 var direction: Vector2 = Vector2.ZERO
 var speed = 200
@@ -17,5 +20,6 @@ func _process(delta):
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":  # Verifica se o objeto colidido é o Boss
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 		return
+		

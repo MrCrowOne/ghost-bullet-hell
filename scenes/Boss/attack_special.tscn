@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmiqk2bj7uudt"]
+
+[ext_resource type="Script" path="res://scripts/attack_special.gd" id="1_4ignr"]
+[ext_resource type="Texture2D" uid="uid://dth5b02l34ysu" path="res://icon.svg" id="1_wnkyj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_outby"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wnkyj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3modb"]
+size = Vector2(129, 128)
+
+[node name="AttackSpecial" type="Area2D" groups=["bulletBoss"]]
+scale = Vector2(1.6, 1.6)
+collision_mask = 2
+script = ExtResource("1_4ignr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_outby")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_3modb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

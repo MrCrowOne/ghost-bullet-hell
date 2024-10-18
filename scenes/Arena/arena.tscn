@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b77vvj4h25gor"]
 
-[ext_resource type="Texture2D" uid="uid://c8ijl1dd1fy62" path="res://sprites/floor.jpg" id="1_7l8lm"]
+[ext_resource type="Texture2D" uid="uid://du7w56luvn70t" path="res://fonts/pixil-frame-0 (23).png" id="1_3mycv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y18wi"]
 size = Vector2(27, 367.792)
@@ -12,7 +12,9 @@ size = Vector2(603.333, 37)
 scale = Vector2(1.2, 1.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_7l8lm")
+position = Vector2(0, 20)
+scale = Vector2(1.7, 2.2)
+texture = ExtResource("1_3mycv")
 
 [node name="LeftRight" type="StaticBody2D" parent="."]
 
@@ -27,9 +29,9 @@ shape = SubResource("RectangleShape2D_y18wi")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="Top" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2.49998, -200.5)
+position = Vector2(2.49998, -194.167)
 shape = SubResource("RectangleShape2D_cb35x")
 
 [node name="Top2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(3.33334, 202)
+position = Vector2(3.33334, 194.167)
 shape = SubResource("RectangleShape2D_cb35x")

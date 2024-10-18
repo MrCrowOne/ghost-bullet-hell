@@ -40,4 +40,4 @@ func update_health_bar() -> void:
 	health_bar.value = health  # Define o valor atual da barra como o valor da vida
 
 func die() -> void:
-	queue_free()
+	get_tree().change_scene_to_file("res://scenes/youwin.tscn")

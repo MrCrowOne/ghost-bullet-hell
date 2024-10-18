@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://dosqtuwbsb0sp"]
+
+[ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_6220e"]
+[ext_resource type="Texture2D" uid="uid://b2amcmk43ywkl" path="res://fonts/game_logo.png" id="2_gbimr"]
+[ext_resource type="Texture2D" uid="uid://c5y4gael1te23" path="res://sprites/menu.png" id="2_gvkjo"]
+[ext_resource type="Theme" uid="uid://cfxf3hfq0u264" path="res://scenes/title_screen.tres" id="3_d0ry4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p2t6g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lfiww"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6220e")
+
+[node name="Bg" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_gvkjo")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Game_logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_gbimr")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="LogoInvisible" type="TextureRect" parent="MarginContainer/HBoxContainer2/VBoxContainer2"]
+z_index = -6
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("2_gbimr")
+
+[node name="Start_btn" type="Button" parent="MarginContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_d0ry4")
+text = "Start"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_p2t6g")
+
+[node name="Controls_btn" type="Button" parent="MarginContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_d0ry4")
+text = "Controls"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_p2t6g")
+
+[node name="Credits_btn" type="Button" parent="MarginContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_d0ry4")
+text = "Credits"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lfiww")
+
+[node name="Quit_btn" type="Button" parent="MarginContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_d0ry4")
+text = "Quit Game"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer2/VBoxContainer2/Start_btn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer2/VBoxContainer2/Controls_btn" to="." method="_on_controls_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer2/VBoxContainer2/Credits_btn" to="." method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer2/VBoxContainer2/Quit_btn" to="." method="_on_quit_btn_pressed"]

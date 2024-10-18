@@ -10,28 +10,28 @@ extends CharacterBody2D
 @onready var sprite = $Texture
 @onready var hand: Node2D = get_node("Hand")
 
-var using_controller = false  # Variável para rastrear o método de mira atual
-var previous_mouse_position = Vector2.ZERO  # Armazena a posição anterior do mouse
+var using_controller = false
+var previous_mouse_position = Vector2.ZERO
 
 var is_dashing = false
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
 var dash_direction = Vector2.ZERO
+var original_collision_mask
+
+const GROUP_BULLET_BOSS = 2  # Supondo que "bulletBoss" esteja no grupo 2
 
 func _ready() -> void:
-	pass
+	original_collision_mask = collision_layer  # Armazena a máscara original
 
 func _physics_process(delta: float) -> void:
 	handle_dash(delta)
 	walk(delta)
 	animate()
-	hand_follow_mouse()
-	hand_follow_xbox()
+	handle_aiming_method()
 
 func handle_dash(delta: float):
-	# Se o jogador pode fazer dash
 	if is_dashing:
-		collision.disabled = true
 		# Continua o dash enquanto o tempo de dash não acabar
 		dash_timer -= delta
 		if dash_timer > 0:
@@ -39,20 +39,19 @@ func handle_dash(delta: float):
 		else:
 			is_dashing = false
 			dash_cooldown_timer = dash_cooldown  # Inicia o cooldown
+			collision_layer = original_collision_mask  # Restaura a máscara original
 	else:
-		collision.disabled = false
-		# Reseta o cooldown para permitir outro dash
+		# Se o cooldown do dash acabou e a tecla de dash foi pressionada
 		if dash_cooldown_timer > 0:
 			dash_cooldown_timer -= delta
-		# Inicia o dash ao pressionar a tecla "dash" (pode ser "Shift")
 		elif Input.is_action_just_pressed("dash") and dash_cooldown_timer <= 0:
 			is_dashing = true
 			dash_timer = dash_duration
 			dash_direction = velocity.normalized()  # O dash segue a direção atual do movimento
 			sprite.play("dash")  # Inicia a animação de dash
+			collision_layer &= ~GROUP_BULLET_BOSS  # Remove o grupo "bulletBoss" da colisão
 
 func walk(delta: float):
-	# Se não estiver no modo de dash, continua a movimentação normal
 	if not is_dashing:
 		var direction: Vector2 = Vector2(
 			Input.get_axis("left", "right"),
@@ -70,7 +69,6 @@ func walk(delta: float):
 	move_and_slide()
 
 func animate() -> void:
-	# Animações normais quando não está no modo de dash
 	if not is_dashing:
 		if velocity.x > 0:
 			sprite.flip_h = true
@@ -89,19 +87,15 @@ func animate() -> void:
 		dust.emitting = false
 
 func handle_aiming_method():
-	# Verifica se o jogador está usando o mouse ou o controle
 	var current_mouse_position = get_global_mouse_position()
 
-	# Se o mouse se moveu, desativamos o controle e usamos o mouse
 	if previous_mouse_position != current_mouse_position:
 		using_controller = false
 	previous_mouse_position = current_mouse_position
 
-	# Se o jogador mexeu o analógico direito do controle, usamos o controle
 	if Input.get_axis("right_stick_left", "right_stick_right") != 0 or Input.get_axis("right_stick_up", "right_stick_down") != 0:
 		using_controller = true
 
-	# Chama a função de mira correta
 	if using_controller:
 		hand_follow_xbox()
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dogyrlhx6smb5"]
+[gd_scene load_steps=25 format=3 uid="uid://dogyrlhx6smb5"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_ca5fl"]
 [ext_resource type="Texture2D" uid="uid://dr0y77bqcp2cw" path="res://sprites/player/Man_Lantern/player01.png" id="2_e2qxx"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bdlhe6tmwlda5" path="res://sprites/player/Man_Lantern/run/player_run11.png" id="13_eshfa"]
 [ext_resource type="Texture2D" uid="uid://cvn5vemvcpsv7" path="res://sprites/player/Gun/Gun.png" id="15_0i36y"]
 [ext_resource type="PackedScene" uid="uid://suyljb6oyycn" path="res://scenes/player/effects/dust.tscn" id="17_k8e7h"]
+[ext_resource type="Texture2D" uid="uid://cq4nmxkkw0cfb" path="res://fonts/bubble.png" id="22_nigpi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_geysy"]
 animations = [{
@@ -92,13 +93,14 @@ animations = [{
 radius = 8.06226
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_ca5fl")
 movement_speed = 200.0
 
 [node name="Texture" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_geysy")
-animation = &"dash"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -129,5 +131,6 @@ texture = ExtResource("5_hr3s3")
 [node name="Dust" parent="." instance=ExtResource("17_k8e7h")]
 position = Vector2(0, 9)
 emitting = false
+texture = ExtResource("22_nigpi")
 
 [connection signal="timeout" from="Hand/TimerShoot" to="Hand" method="_on_timer_shoot_timeout"]

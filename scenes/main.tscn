@@ -68,7 +68,7 @@ shape = SubResource("RectangleShape2D_w04t4")
 
 [node name="Bottom" type="CollisionShape2D" parent="AreaDead"]
 z_index = -1
-position = Vector2(586.5, 880.5)
+position = Vector2(587, 902)
 scale = Vector2(2.43795, 1.23844)
 shape = SubResource("RectangleShape2D_w04t4")
 

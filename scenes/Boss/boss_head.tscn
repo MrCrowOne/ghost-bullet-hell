@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cms74lui1xcw2"]
+[gd_scene load_steps=28 format=3 uid="uid://cms74lui1xcw2"]
 
 [ext_resource type="Texture2D" uid="uid://cha8p6vlfriyd" path="res://sprites/Boss/Head/Sprite-0001.png" id="1_7kntr"]
 [ext_resource type="Script" path="res://scripts/boss_head.gd" id="1_rm8tn"]
@@ -21,11 +21,36 @@
 [ext_resource type="Texture2D" uid="uid://clt5viiqd3b72" path="res://sprites/Boss/Head/pixil-frame-9.png" id="14_snuvx"]
 [ext_resource type="Texture2D" uid="uid://b1p7pcnkq7ef5" path="res://sprites/Boss/Head/pixil-frame-10.png" id="15_jykmo"]
 [ext_resource type="Texture2D" uid="uid://5aa3w7vl5yat" path="res://sprites/Boss/Head/pixil-frame-11.png" id="16_0s0qg"]
+[ext_resource type="Script" path="res://scenes/Boss/eye_attack_left.gd" id="22_gqnii"]
+[ext_resource type="Texture2D" uid="uid://dth5b02l34ysu" path="res://icon.svg" id="22_j6vfm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5odqn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2xoem"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_j6vfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_j6vfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_j6vfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_j6vfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_j6vfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_j6vfm")
+}],
+"loop": false,
+"name": &"attack2",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 2.0,
 "texture": ExtResource("1_7kntr")
@@ -182,6 +207,17 @@ color = Color(0.996703, 0.994104, 0.987022, 1)
 energy = 1.41
 texture = ExtResource("7_eljjg")
 
+[node name="EyeAttackLeft" type="Node2D" parent="."]
+script = ExtResource("22_gqnii")
+
+[node name="PointEyeAttack" type="Node2D" parent="EyeAttackLeft"]
+position = Vector2(0.833333, 0)
+
+[node name="TimerEyeLeft" type="Timer" parent="EyeAttackLeft"]
+wait_time = 10.0
+autostart = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="LeftHand/TimerLeft" to="LeftHand" method="_on_attack_timeout"]
 [connection signal="timeout" from="RightHand/TimerRight" to="RightHand" method="_on_attack_timeout"]
+[connection signal="timeout" from="EyeAttackLeft/TimerEyeLeft" to="EyeAttackLeft" method="_on_timer_eye_left_timeout"]
