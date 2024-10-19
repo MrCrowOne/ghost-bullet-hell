@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1emmdscp2icw"]
+
+[ext_resource type="Script" path="res://scripts/pause.gd" id="1_nx27e"]
+[ext_resource type="Theme" uid="uid://h0qdc4ad3agr" path="res://scenes/pause.tres" id="2_khuxy"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_l0lch"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_jgue6"]
+events = [SubResource("InputEventAction_l0lch")]
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+visible = false
+script = ExtResource("1_nx27e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.235294)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -33.0
+offset_right = 46.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_khuxy")
+shortcut = SubResource("Shortcut_jgue6")
+text = "RESUME"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_khuxy")
+text = "QUIT GAME
+"
+
+[connection signal="pressed" from="VBoxContainer/Pause" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

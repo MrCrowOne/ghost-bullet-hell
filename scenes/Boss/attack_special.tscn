@@ -1,24 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmiqk2bj7uudt"]
+[gd_scene load_steps=11 format=3 uid="uid://bmiqk2bj7uudt"]
 
 [ext_resource type="Script" path="res://scripts/attack_special.gd" id="1_4ignr"]
-[ext_resource type="Texture2D" uid="uid://dth5b02l34ysu" path="res://icon.svg" id="1_wnkyj"]
+[ext_resource type="Texture2D" uid="uid://b6tsd0o6wy5o3" path="res://sprites/Boss/BulletBoss/Special/Sprite-0001.png" id="2_05grg"]
+[ext_resource type="Texture2D" uid="uid://bc4jl10tblcld" path="res://sprites/Boss/BulletBoss/Special/Sprite-0002.png" id="3_ve32s"]
+[ext_resource type="Texture2D" uid="uid://qh671883tlnl" path="res://sprites/Boss/BulletBoss/Special/Sprite-0003.png" id="4_v60mv"]
+[ext_resource type="Texture2D" uid="uid://b3r7dgetxeah0" path="res://sprites/Boss/BulletBoss/Special/Sprite-0004.png" id="5_12xvv"]
+[ext_resource type="Texture2D" uid="uid://bg83j37kh64oy" path="res://sprites/Boss/BulletBoss/Special/Sprite-0005.png" id="6_2opld"]
+[ext_resource type="Texture2D" uid="uid://pcyaig5hqyfb" path="res://sprites/Boss/BulletBoss/Special/Sprite-0006.png" id="7_osbq8"]
+[ext_resource type="Texture2D" uid="uid://dplxbewlgqtms" path="res://sprites/Boss/BulletBoss/Special/Sprite-0007.png" id="8_0ge5p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_outby"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_wnkyj")
+"texture": ExtResource("2_05grg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ve32s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v60mv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_12xvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2opld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_osbq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0ge5p")
 }],
 "loop": true,
 "name": &"default",
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3modb"]
-size = Vector2(129, 128)
+[sub_resource type="CircleShape2D" id="CircleShape2D_wvbl6"]
+radius = 27.806
 
 [node name="AttackSpecial" type="Area2D" groups=["bulletBoss"]]
-scale = Vector2(1.6, 1.6)
 collision_mask = 2
 script = ExtResource("1_4ignr")
 
@@ -27,7 +50,8 @@ sprite_frames = SubResource("SpriteFrames_outby")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_3modb")
+position = Vector2(-4, 0)
+scale = Vector2(4.30847, 4.27396)
+shape = SubResource("CircleShape2D_wvbl6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

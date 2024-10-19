@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dosqtuwbsb0sp"]
+[gd_scene load_steps=8 format=3 uid="uid://dosqtuwbsb0sp"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_6220e"]
 [ext_resource type="Texture2D" uid="uid://b2amcmk43ywkl" path="res://fonts/game_logo.png" id="2_gbimr"]
 [ext_resource type="Texture2D" uid="uid://c5y4gael1te23" path="res://sprites/menu.png" id="2_gvkjo"]
 [ext_resource type="Theme" uid="uid://cfxf3hfq0u264" path="res://scenes/title_screen.tres" id="3_d0ry4"]
+[ext_resource type="Texture2D" uid="uid://j7rq51c37wf6" path="res://fonts/Caront’s Judgment.png" id="3_kx2t8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p2t6g"]
 
@@ -46,8 +47,9 @@ layout_mode = 2
 size_flags_horizontal = 6
 
 [node name="Game_logo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
-texture = ExtResource("2_gbimr")
+texture = ExtResource("3_kx2t8")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
